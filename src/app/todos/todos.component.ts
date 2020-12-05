@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Todo} from '../app.component';
+import {Component, OnInit} from '@angular/core';
+import {TodosService} from '../services/todos.service';
 
 
 
@@ -10,10 +10,16 @@ import {Todo} from '../app.component';
 })
 
 export class TodosComponent implements OnInit {
-  @Input() todos: Todo[] = [];
-  constructor() { }
+
+  constructor(
+    private todosService: TodosService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onChange(id: number) {
+    this.todosService.onToggle(id);
   }
 
 }
